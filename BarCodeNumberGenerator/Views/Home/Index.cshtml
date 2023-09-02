@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BarCodeNumberGenerator.BarCodeNum
+
+<div class="container">
+
+    <form class="form-horizontal" method="post" asp-action="Index">
+        <div class="form-group">
+            <label asp-for="StartingNumber"  class="control-label col-sm-2" >Starting Number:</label>
+            <div class="col-sm-10">
+                <input asp-for="StartingNumber"  type="text" class="form-control">
+                @if (Model.IsValid == true)
+                {
+                    <p class="text-danger">@Model.ErrorMsg</p>
+                }     
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NumberGap"  class="control-label col-sm-2">Gap:</label>
+            <div class="col-sm-10">
+                <input asp-for="NumberGap" class="form-control" type="text">
+            </div>
+        </div>
+@*        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary">Advanced</button>
+            </div>
+        </div>*@
+        <div class="form-group" >
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </div>
+@*            <div class="col-sm-offset-2 col-sm-10">
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </div>*@
+        </div>
+    </form>
+
+@*
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ExportToExcel">Export to excel</a>*@
+
+
+ @*   <a href="/Home/ExportToExcel?key1=@Model.NumberList">Pass Data</a>*@
+
+@*
+    <a id="exportLink" class="nav-link text-dark" asp-controller="Home" asp-action="ExportToExcel" data-content="ass">Export to excel 000 </a>
+
+    <script>
+        $("#exportLink").click(function () {
+            var dataContent = $(this).data("content");
+            $.ajax({
+                url: "/Home/ExportToExcel",
+                type: "POST",
+                data: { dataContent: @Model.NumberList },
+                success: function (result) {
+                    // Handle the response from the controller
+                }
+            });
+        });
+    </script>*@
+
+
+
+@*    <div class="container"> 
+    <h3 >Generated BarCodes</h3>
+    <ul class="list-unstyled card-columns" style="column-count: 8;">
+        @if (Model.NumberList != null && Model.NumberList.Count > 0)
+        {
+            @foreach (var item in Model.NumberList)
+            {
+                <li>@item</li>
+            }
+        }
+        else
+        {
+            <p>No Results</p>
+        }
+    </ul>*@
+    </div>
+</div>
